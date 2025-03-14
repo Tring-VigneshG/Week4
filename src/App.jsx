@@ -26,10 +26,21 @@ function App() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-
+  const sortAscending = () => {
+    const ascendingDetails = [...data].sort((a, b) => a.name.localeCompare(b.name));
+    setData(ascendingDetails);
+  };
+  
+  const sortDescending = () => {
+    const descendingDetails = [...data].sort((a, b) => b.name.localeCompare(a.name));
+    setData(descendingDetails);
+  };
+  
   return (
     <div>
       <h2>Product List:</h2>
+      <button onClick={sortAscending}>Ascending Order</button>
+      <button onClick={sortDescending}>Descending Order</button>
       <div className="card-container">
         {data.map((item) => (
           <div className="card" key={item.id}>
